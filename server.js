@@ -1,5 +1,3 @@
-'use strict';
-
 const Hapi = require('hapi');
 const Boom = require('boom');
 const mongoose = require('mongoose');
@@ -11,15 +9,13 @@ const server = new Hapi.Server();
 
 // The connection object takes some
 // configuration, including the port
-server.connection({ port: 3000 });
+server.connection({ port: 3000, routes: { cors: true } });
 
 const dbUrl = 'mongodb://localhost:27017/hapi-app';
 
 server.register(require('hapi-auth-jwt'), (err) => {
-
-  // We're giving the strategy both a name
-  // and scheme of 'jwt'
-  server.auth.strategy('jwt', 'jwt', {
+  // We are giving the strategy a name of 'jwt'
+  server.auth.strategy('jwt', 'jwt', 'required', {
     key: secret,
     verifyOptions: { algorithms: ['HS256'] }
   });
@@ -36,14 +32,10 @@ server.register(require('hapi-auth-jwt'), (err) => {
 });
 
 // Start the server
-server.start((err) => {
-  if (err) {
-    throw err;
-  }
+server.start(err => {
+  if (err) throw err;
   // Once started, connect to Mongo through Mongoose
   mongoose.connect(dbUrl, {}, (err) => {
-    if (err) {
-      throw err;
-    }
+    if (err) throw err;
   });
 });
