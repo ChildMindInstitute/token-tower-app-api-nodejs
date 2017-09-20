@@ -24,7 +24,7 @@ const mail = ({ to, subject, mailbody }) => {
 
 exports.sentMailVerificationLink = (user, token) => {
   mail({
-    mailbody: `<p>Thanks for Registering on ${config.get('app')}</p><p>Please verify your email by clicking on the verification link below.<br/><a href='http://${config.get('server.host')}:${config.get('server.port')}/${token}'>Verification Link</a></p>`,
+    mailbody: `<p>Thanks for Registering on ${config.get('app')}</p><p>Please verify your email by clicking on the verification link below.<br/><a href='http://${config.get('server.host')}:${config.get('server.port')}/api/users/verifyEmail/${token}'>Verification Link</a></p>`,
     to: user.email,
     subject: 'Account Verification'
   });

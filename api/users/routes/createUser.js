@@ -27,6 +27,7 @@ module.exports = {
       user.email = req.payload.email;
       user.username = req.payload.username;
       user.admin = false;
+      user.isVerified = false;
       hashPassword(req.payload.password, (err, hash) => {
         if (err) throw Boom.badRequest(err);
         

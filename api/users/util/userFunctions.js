@@ -42,6 +42,9 @@ function verifyCredentials(req, res) {
       if (!user) {
         return res(Boom.badRequest('Incorrect username or email!'));
       }
+      if (!user.isVerified) {
+        return res(Boom.badRequest('Your email address is not verified. please verify your email address!'));
+      }
       bcrypt.compare(password, user.password, (err, isValid) => {
         if (isValid) {
           return res(user);

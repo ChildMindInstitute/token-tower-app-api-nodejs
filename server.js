@@ -3,7 +3,7 @@ const Boom = require('boom');
 const mongoose = require('mongoose');
 const glob = require('glob');
 const path = require('path');
-var config = require('config');
+const config = require('config');
 
 const server = new Hapi.Server();
 
