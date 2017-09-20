@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secret = require('../../../config');
+var config = require('config');
 
 function createToken(user) {
   let scopes;
@@ -12,7 +12,7 @@ function createToken(user) {
   // Sign the JWT
   return jwt.sign(
     { id: user._id, username: user.username, scope: scopes },
-    secret,
+    config.get('secretkey'),
     { algorithm: 'HS256', expiresIn: '1h' }
   );
 }

@@ -4,7 +4,8 @@
   "description": "childmind-api-nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:prod": "NODE_ENV=production yarn start"
   },
   "repository": {
     "type": "git",
@@ -16,13 +17,15 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "boom": "^5.2.0",
+    "config": "^1.26.2",
     "glob": "^7.1.2",
     "hapi": "^16.5.2",
     "hapi-auth-jwt": "^4.0.0",
     "joi": "^10.6.0",
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^7.4.3",
-    "mongoose": "^4.11.9"
+    "mongoose": "^4.11.9",
+    "nodemailer": "^4.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

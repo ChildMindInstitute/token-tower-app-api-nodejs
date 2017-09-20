@@ -1,0 +1,19 @@
+{
+  "app": "tokentotem",
+  "server": {
+    "host": "",
+    "port": ""
+  },
+  "db": {
+    "url": "",
+    "pass": ""
+  },
+  "smtp": {
+    "host": "",
+    "port": "",
+    "ssl": true
+  },
+  "smtpUserName": "",
+  "smtpPassword": "",
+  "secretkey": "tokentotem"
+}
