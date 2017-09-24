@@ -1,19 +1,10 @@
-const bcrypt = require('bcryptjs');
 const Boom = require('boom');
 const User = require('../model/User');
 const createUserSchema = require('../schemas/createUser');
 const verifyUniqueUser = require('../util/userFunctions').verifyUniqueUser;
 const createToken = require('../util/token');
 const mail = require('../../../helper/mail');
-
-function hashPassword(password, cb) {
-  // Generate a salt at level 10 strength
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(password, salt, (err, hash) => {
-      return cb(err, hash);
-    });
-  });
-}
+const password = require('../util/password');
 
 module.exports = {
   method: 'POST',
@@ -28,7 +19,7 @@ module.exports = {
       user.username = req.payload.username;
       user.admin = false;
       user.isVerified = false;
-      hashPassword(req.payload.password, (err, hash) => {
+      password.hashPassword(req.payload.password, (err, hash) => {
         if (err) throw Boom.badRequest(err);
         
         user.password = hash;

@@ -11,7 +11,12 @@ function createToken(user) {
   }
   // Sign the JWT
   return jwt.sign(
-    { id: user._id, username: user.username, scope: scopes },
+    { 
+      id: user._id, 
+      username: user.username, 
+      scope: scopes, 
+      newPassword: user.newPassword // change password
+    },
     config.get('secretkey'),
     { algorithm: 'HS256', expiresIn: '1h' }
   );

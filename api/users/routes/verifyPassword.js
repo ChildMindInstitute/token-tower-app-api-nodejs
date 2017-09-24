@@ -5,7 +5,7 @@ const config = require('config');
 
 module.exports = {
   method: 'GET',
-  path: '/api/users/verifyEmail/{token}',
+  path: '/api/users/verifyPassword/{token}',
   config: {
     auth: false,
     handler: (req, res) => {
@@ -18,14 +18,13 @@ module.exports = {
             return res(Boom.badImplementation(err));
           }
           if (user === null) return res(Boom.forbidden('invalid verification link'));
-          if (user.isVerified === true) return res(Boom.forbidden('account is already verified'));
-          user.isVerified = true;
+          user.password = decoded.newPassword;
           User.findOneAndUpdate({ _id: decoded.id }, user, (err, user) => {
             if (err) {
               console.error(err);
               return res(Boom.badImplementation(err));
             }
-            return res({ message: 'account sucessfully verified' });
+            return res({ message: 'account sucessfully changed password' });
           })
         })
       });
