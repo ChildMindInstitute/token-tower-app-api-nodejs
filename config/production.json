@@ -1,19 +1,19 @@
 {
-  "app": "tokentotem",
+  "app": "Token Totem",
   "server": {
-    "host": "",
-    "port": ""
+    "host": "35.202.197.163",
+    "port": "80"
   },
   "db": {
-    "url": "",
+    "url": "mongodb://localhost:27017/tokentotem",
     "pass": ""
   },
   "smtp": {
-    "host": "",
-    "port": "",
+    "host": "smtp.gmail.com",
+    "port": 465,
     "ssl": true
   },
-  "smtpUserName": "",
-  "smtpPassword": "",
+  "smtpUserName": "diamond.com93920@gmail.com",
+  "smtpPassword": "childmind",
   "secretkey": "tokentotem"
 }

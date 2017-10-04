@@ -16,12 +16,8 @@ module.exports = {
       const newPassword = req.payload.password;
 
       User.findOne({ email: email }, (err, user) => {
-        if (err) {
-          throw Boom.badRequest(err);
-        }
-        if (!user) {
-          res(Boom.notFound('User not found!'));
-        }
+        if (err) throw Boom.badRequest(err);
+        if (!user) return res(Boom.notFound('User not found!'));
 
         password.hashPassword(newPassword, (err, hash) => {
           if (err) throw Boom.badRequest(err);
